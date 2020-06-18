@@ -96,11 +96,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSkating.Dashboard.Mac"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{CEF31EE5-8544-42FE-AE84-B5F95D57EE4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeysProvider", "Tools\Misc\KeysProvider\KeysProvider.csproj", "{7EBECC32-EF3D-4746-B6E5-6D5C6D741380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeysProvider", "Tools\Misc\KeysProvider\KeysProvider.csproj", "{7EBECC32-EF3D-4746-B6E5-6D5C6D741380}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeysProvider.Tests", "Tools\Misc\KeysProvider.Tests\KeysProvider.Tests.csproj", "{86CF53D9-85F4-450B-B0C8-7CFC41145241}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeysProvider.Tests", "Tools\Misc\KeysProvider.Tests\KeysProvider.Tests.csproj", "{86CF53D9-85F4-450B-B0C8-7CFC41145241}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectHelpers", "Tools\Misc\ProjectHelpers\ProjectHelpers.csproj", "{F8DE2749-EBDC-4650-AC9E-7A0832C5EF6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectHelpers", "Tools\Misc\ProjectHelpers\ProjectHelpers.csproj", "{F8DE2749-EBDC-4650-AC9E-7A0832C5EF6F}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -109,6 +109,7 @@ Global
 		Client\DummyServices\DummyServices.projitems*{3f4ad79d-7ff3-4f27-9f44-3cecf248b422}*SharedItemsImports = 4
 		Client\AndroidShared\AndroidShared.projitems*{6e2b0419-cea6-42f6-8a9b-891c1fb48c2f}*SharedItemsImports = 4
 		Client\DummyServices\DummyServices.projitems*{6e2b0419-cea6-42f6-8a9b-891c1fb48c2f}*SharedItemsImports = 4
+		Client\XfShared\XfShared.projitems*{b1a5405d-2219-4544-8a7f-e24de557dd74}*SharedItemsImports = 5
 		Client\DummyServices\DummyServices.projitems*{c0dcc62e-4c4b-447b-aa18-87c4d0391cd8}*SharedItemsImports = 4
 		Client\AndroidShared\AndroidShared.projitems*{c13c1e1c-11ce-44c7-9eb3-1c1f03b9cea2}*SharedItemsImports = 13
 		Client\AndroidShared\AndroidShared.projitems*{de6c0f7a-ed4f-40e4-92bc-1627fd4443fc}*SharedItemsImports = 4

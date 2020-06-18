@@ -9,7 +9,6 @@
     <Import_RootNamespace>XfShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Services" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
