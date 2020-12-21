@@ -1,0 +1,57 @@
+﻿@using SmartSkating.Dashboard.Blazor.Shared
+@using Sanet.SmartSkating.ViewModels
+@using Sanet.SmartSkating.Services.Account
+@using Sanet.SmartSkating.Services.Api
+@using Refit
+@using Sanet.SmartSkating.Dto
+@page "/login"
+@layout LoginLayout
+@inject NavigationManager navigationManager
+
+<h1 class="h2 font-weight-normal login-title">
+    Blazor with Identity Sample
+</h1>
+
+<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="_loginViewModel">
+    <DataAnnotationsValidator />
+    <h4 class="font-weight-normal text-center">Login</h4>
+
+    <label for="inputUsername" class="sr-only">User Name</label>
+    <InputText id="inputUsername" class="form-control" @bind-Value="_loginViewModel.Username" autofocus placeholder="Username" />
+    <ValidationMessage For="@(() => _loginViewModel.Username)" />
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="_loginViewModel.Password" />
+    <ValidationMessage For="@(() => _loginViewModel.Password)" />
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    <label class="text-danger">@error</label>
+
+    <NavLink href="register">
+        <h6 class="font-weight-normal text-center">Create account</h6>
+    </NavLink>
+</EditForm>
+
+@code{
+
+    string error { get; set; }
+    readonly LoginViewModel _loginViewModel = new LoginViewModel(
+        new LoginService(RestService.For<IApiService>(ApiNames.BaseUrl)));
+
+    void OnSubmit()
+    {
+
+
+        error = null;
+        try
+        {
+            _loginViewModel.LoginCommand.Execute(null);
+            navigationManager.NavigateTo("");
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+    }
+}
