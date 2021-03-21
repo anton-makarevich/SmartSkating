@@ -25,20 +25,8 @@ steps:
     projects: 'Client/Dashboard/Dashboard.Wasm/Dashboard.Wasm.csproj'
     arguments: '-c Release'
 
-- task: AzureCLI@2
+- task: AzureStaticWebApp@0
   inputs:
-    azureSubscription: 'AzureDevSubscription'
-    scriptType: 'batch'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob delete-batch --account-name $(storage-name) --source $web --pattern managed-*'
-    arguments: ''
-  displayName: 'Delete old managed folders if exist'
-
-- task: AzureFileCopy@3
-  inputs:
-    SourcePath: 'Client/Dashboard/Dashboard.Wasm/bin/Release/netstandard2.0/dist'
-    azureSubscription: 'AzureDevSubscription'
-    Destination: 'AzureBlob'
-    storage: $(storage-name)
-    ContainerName: '$web'
-  displayName: 'Deploy dashboard wasm to azure storage'
+    output_location: 'Client\Dashboard\Dashboard.Wasm\bin\Release\netstandard2.0\dist'
+  env:
+    azure_static_web_apps_api_token: $(azure-sw-deployment-token)
