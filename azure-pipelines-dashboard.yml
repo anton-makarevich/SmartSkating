@@ -27,6 +27,6 @@ steps:
 
 - task: AzureStaticWebApp@0
   inputs:
-    output_location: 'Client\Dashboard\Dashboard.Wasm\bin\Release\netstandard2.0\dist'
+    app_location: 'Client\Dashboard\Dashboard.Wasm\bin\Release\netstandard2.0\dist'
   env:
     azure_static_web_apps_api_token: $(azure-sw-deployment-token)
