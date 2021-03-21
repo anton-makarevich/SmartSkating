@@ -2,7 +2,7 @@ trigger:
 - develop
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   - name: solution
@@ -19,32 +19,26 @@ steps:
 - script: dotnet restore $(solution)
   displayName: 'Restore nuget packages'
 
-- task: MSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: 'Client\Dashboard\Dashboard.Wasm\Dashboard.Wasm.csproj'
-    configuration: 'Release'
-  displayName: 'Build dashboard wasm'
+    command: 'build'
+    projects: 'Client/Dashboard/Dashboard.Wasm/Dashboard.Wasm.csproj'
+    arguments: '-c Release'
 
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'AzureDevSubscription'
     scriptType: 'batch'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob delete-batch --account-name $(storage-name) --source $web --pattern package_*'
+    inlineScript: 'az storage blob delete-batch --account-name $(storage-name) --source $web --pattern managed-*'
     arguments: ''
   displayName: 'Delete old managed folders if exist'
 
 - task: AzureFileCopy@3
   inputs:
-    SourcePath: 'Client\Dashboard\Dashboard.Wasm\bin\Release\netstandard2.0\dist'
+    SourcePath: 'Client/Dashboard/Dashboard.Wasm/bin/Release/netstandard2.0/dist'
     azureSubscription: 'AzureDevSubscription'
     Destination: 'AzureBlob'
     storage: $(storage-name)
     ContainerName: '$web'
   displayName: 'Deploy dashboard wasm to azure storage'
-  
-- task: AzureStaticWebApp@0
-  inputs:
-    output_location: 'Client\Dashboard\Dashboard.Wasm\bin\Release\netstandard2.0\dist'
-  env:
-    azure_static_web_apps_api_token: $(azure-sw-deployment-token)
