@@ -30,7 +30,7 @@ steps:
     azureSubscription: 'AzureDevSubscription'
     scriptType: 'batch'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob delete-batch --account-name $(storage-name) --source $web --pattern managed-*'
+    inlineScript: 'az storage blob delete-batch --account-name $(storage-name) --source $web --pattern package_*'
     arguments: ''
   displayName: 'Delete old managed folders if exist'
 
@@ -42,3 +42,9 @@ steps:
     storage: $(storage-name)
     ContainerName: '$web'
   displayName: 'Deploy dashboard wasm to azure storage'
+  
+- task: AzureStaticWebApp@0
+  inputs:
+    output_location: 'Client\Dashboard\Dashboard.Wasm\bin\Release\netstandard2.0\dist'
+  env:
+    azure_static_web_apps_api_token: $(azure-sw-deployment-token)
